@@ -11,7 +11,7 @@ version 0.0.1
 
 1.- Descargar en la carpeta lib/ , el proyecto php-mvc
 
-#git clone git@github.com:ifloresc/php-core.git
+git clone git@github.com:ifloresc/php-core.git
 
 2.- Modificar el archivo index.php y cambiar la ruta
 
@@ -19,7 +19,6 @@ version 0.0.1
 
 4.- Listo, ya estas en condiciones de generar Controladores, Servicios y Daos, para tus paginas.
 
-# Crear Controladores
 
 Autor : Ivan A. Flores Correa
 Email : ifloresenator@gmail.com
