@@ -1,4 +1,4 @@
 <?php 
 // Agregamos Api MVC
-include 'lib/index.php';
+include 'lib/php-core/index.php';
 ?>
