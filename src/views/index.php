@@ -10,4 +10,16 @@ Ejemplos se uso de esta libreria :
 	<li>
 		<a href="<?php echo $site; ?>test/own">Only Own</a>
 	</li>
+	<li>
+		<a href="<?php echo $site; ?>test/error">Error</a>
+	</li>
+	<li>
+		<a href="<?php echo $site; ?>test/succes">Succes</a>
+	</li>
+	<li>
+		<a href="<?php echo $site; ?>test/json">JSON</a>
+	</li>
+	<li>
+		<a href="<?php echo $site; ?>test/export">Export</a>
+	</li>
 </ul>
