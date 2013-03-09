@@ -17,6 +17,9 @@ interface Config {
 	
 	const mailhide_privkey = '';
 	
+	// Campos que define el atributo de donde sacar el perfil del Objeto de la session
+	const profileType = 'profile';
+	
 	/*
 	 * Datos Conexion BD
 	 */
