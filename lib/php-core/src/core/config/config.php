@@ -7,7 +7,7 @@ interface Config {
 	// Datos Sitio
 	const site_url = "/demo-php-mvc";
 	
-	const mail_to = "info@mvc.cl";
+	const mail_to = "info@kfc.cl";
 	
 	const publickey = ""; // you got this from the signup page
 	
@@ -24,7 +24,7 @@ interface Config {
 	 * Datos Conexion BD
 	 */
 	const db_ip = "localhost";
-	const db_name = "db";
+	const db_name = "php-mvc";
 	const db_user = "user";
 	const db_pass = "pass";
 
