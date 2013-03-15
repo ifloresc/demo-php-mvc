@@ -22,4 +22,7 @@ Ejemplos se uso de esta libreria :
 	<li>
 		<a href="<?php echo $site; ?>test/export">Export</a>
 	</li>
+	<li>
+                <a href="<?php echo $site; ?>test/load/1">Get ID</a>
+        </li>
 </ul>
