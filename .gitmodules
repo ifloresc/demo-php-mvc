@@ -1,0 +1,3 @@
+[submodule "lib/php-core"]
+	path = lib/php-core
+	url = git@github.com:ifloresc/php-core.git
