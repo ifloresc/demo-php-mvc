@@ -37,14 +37,7 @@
 		<header>			
 			<h2><?php echo $lang['PAGE_NAME']; ?></h2>
 			<div id="homeLogout">
-				<a href="<?php echo $site; ?>index">Inicio</a>
-			<?php 
-			if (isset($_SESSION['user'])) {
-			?>
-				<a href="<?php echo $site; ?>user/logout">Logout</a>
-			<?php 
-			}
-			?>
+				<a href="<?php echo $site; ?>indexSite">Inicio</a>
 			</div>
 		</header>
 

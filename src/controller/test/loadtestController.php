@@ -3,7 +3,7 @@
 class loadtestController extends BaseController {
 	
 	public function action() {
-		$this->registry->template->id = $_GET['id'];
+		$this->setAttribute('id',$this->getId());
 		return "load";
 	}
 
