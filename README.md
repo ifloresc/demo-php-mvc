@@ -6,7 +6,7 @@ Lincensed under GPL2 - http://www.gnu.org/licenses/gpl-2.0.html
 
 Se esta trabajando en la estructura para manejar como libreria, para los proyectos php
 
-version 4.0
+version 4.1
 
 # Uso
 
