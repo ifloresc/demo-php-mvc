@@ -1,7 +1,8 @@
-php-core
+Demo php-mvc By Ivan A. Flores C.
 ========
 
-MVC Php
+Lincensed under GPL2 - http://www.gnu.org/licenses/gpl-2.0.html
+
 
 Se esta trabajando en la estructura para manejar como libreria, para los proyectos php
 
