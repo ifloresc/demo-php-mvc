@@ -24,7 +24,7 @@ body {
 }
 
 a {
-text-decoration: none;
+    text-decoration: none;
 }
 
 li {
@@ -44,4 +44,49 @@ li {
     color: #000;
     font: 20px/40px arial, sans-serif;
     opacity: .9;
+}
+
+article {
+    background-color:#E2E4FF;
+    width: 1000px;
+    padding: 20px;
+    margin-bottom: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+}
+
+header h3 {
+    color: #b81900;
+}
+
+header h1 {
+    color: #000000;
+    font-size: 10px;
+}
+
+footer a {
+    border: orange dashed 1px;
+    background-color: burlywood;
+    padding: 10px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+footer a:hover {
+    border: blue dashed 1px;
+    background-color: #b81900;
+    color: white;
+}
+
+section #code {
+    border: #1c94c4 dashed 1px;
+    background-color: #aaaaaa;
+    color: white;
+    width: 800px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 30px;
+    margin-bottom: 30px;
 }
