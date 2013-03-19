@@ -15,7 +15,6 @@ body {
     text-align: center;
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 14px;
-    line-height: 120%;
 }
 
 a {
@@ -41,38 +40,42 @@ li {
     opacity: .9;
 }
 
-section #body{
-    width: 980px;
-    height: 500px;
+#body{
+    width: 1000px;
     margin: 0 auto;
     padding: 0;
+    border: 1px solid #DDD;
+    line-height: 120%;
 }
 
-header #header {
-    width: 900px;
-    height: 145px;
+#header {
+    width: auto;
     margin: 0 auto;
-    padding: 0;
+    padding: 10px;
     text-align: left;
+    background-color: #F7F7F7;
+    border: 1px solid #DDD;
+    line-height: 30%;
 }
 
-section #content{
+#content{
     position: relative;
-    margin: 0 350px 0 0;
-    padding: 20px 20px 0 40px;
+    margin: 0 10px 0 0;
+    padding: 20px 20px 0 5px;
     text-align: left;
     font-size: 77%;
-    min-height: 2000px;
+    min-height: 500px;
 }
 
 article {
-    background-color:#E2E4FF;
-    width: 1000px;
+    background-color:#F7F7F7;
+    width: 850px;
     padding: 20px;
     margin-bottom: 20px;
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
     border-radius: 20px;
+    border: 1px solid #DDD;
 }
 
 header h3 {
@@ -91,6 +94,7 @@ footer a {
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
+    color: #b81900;
 }
 
 footer a:hover {
