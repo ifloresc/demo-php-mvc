@@ -8,19 +8,14 @@ header {
 	padding: 0;
 }
 
-section #body{
-	width:952px;
-	margin:0 auto;
-}
-
 body {
-	font-size: 87.5%; /* Base font size: 14px */
-	font-family: 'Droid Sans', 'Trebuchet MS', Trebuchet, 'Lucida Sans Unicode',
-		'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-	line-height: 1.429;
-	margin: 0;
-	padding: 0;
-	text-align: left;
+    color: #3F3E3E;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    line-height: 120%;
 }
 
 a {
@@ -44,6 +39,30 @@ li {
     color: #000;
     font: 20px/40px arial, sans-serif;
     opacity: .9;
+}
+
+section #body{
+    width: 980px;
+    height: 500px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+header #header {
+    width: 900px;
+    height: 145px;
+    margin: 0 auto;
+    padding: 0;
+    text-align: left;
+}
+
+section #content{
+    position: relative;
+    margin: 0 350px 0 0;
+    padding: 20px 20px 0 40px;
+    text-align: left;
+    font-size: 77%;
+    min-height: 2000px;
 }
 
 article {
