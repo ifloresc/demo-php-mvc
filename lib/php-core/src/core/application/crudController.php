@@ -16,7 +16,7 @@ abstract class CrudController extends AbstractController {
 			throw new Exception($e->getMessage());
 		}
 		// Se setea mSg a Mostrar en Pagina
-		$this->registry->template->msg = $msg;
+		$this->setAttribute('msg',$msg);
 		
 		return $action;
 	}
@@ -35,14 +35,6 @@ abstract class CrudController extends AbstractController {
 	protected  function isGloba() {
 		return true;
 	}
-	
-	final protected function initSite() {}
-	
-	final protected function indexSite() {}
-	
-	final protected function validAdminProfile() {}
-	
-	final protected function setOwnData() {}
 	
 }
 ?>

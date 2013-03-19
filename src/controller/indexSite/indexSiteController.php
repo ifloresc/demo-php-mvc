@@ -1,6 +1,6 @@
 <?php
 
-class indexController extends AbstractController {
+class indexSiteController extends BaseController {
 
 	public function action() {
 

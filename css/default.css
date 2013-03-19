@@ -30,3 +30,18 @@ text-decoration: none;
 li {
 	list-style: none;
 }
+
+#alert
+{
+    z-index: 999;
+    width: 100%;
+    text-align: center;
+    position:fixed;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    height: 0;
+    color: #000;
+    font: 20px/40px arial, sans-serif;
+    opacity: .9;
+}

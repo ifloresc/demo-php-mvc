@@ -4,7 +4,6 @@
  * Classe que controla el Sitio
  *
  **/
-include_once (__LIB_PATH . '/config/config.php');
 
 abstract class AbstractController implements Config {
 
@@ -20,12 +19,40 @@ abstract class AbstractController implements Config {
 	/*
 	 * @registry object
 	*/
-	protected $registry;
+	private $registry;
 
 	protected $lang;
 
 	function __construct($registry) {
 		$this->registry = $registry;
+	}
+	
+	/**
+	* Methodo ge entrega el id que viaja por URL
+	*
+	*/
+	protected final function getId() {
+		if (!isset($_GET['id'])) {
+			throw new Exception("Parametros ID no seteado.");	
+		}
+		return $_GET['id'];
+	}
+
+	/**
+	 * Methodo que retorna un Servicio
+	 * @param unknown $service
+	 */
+	protected final function getService($service) {
+		return $this->registry->manager->getService($service);
+	}
+
+	/**
+	 * Methodo para setear atributos para la vista
+	 * @param String $name
+	 * @param unknown $value
+	 */
+	protected final function  setAttribute($name, $value) {
+		$this->registry->template->$name = $value;
 	}
 
 	/**
@@ -40,9 +67,9 @@ abstract class AbstractController implements Config {
 		$this->setLang();
 
 		// Site Name
-		$this->registry->template->site = self::site_url . "/";
+		$this->setAttribute('site', self::site_url . "/");
 
-		$this->registry->template->url = $this->getUrl();
+		$this->setAttribute('url',$this->getUrl());
 
 		// Cargamos la logica del Sitio
 		$this->initSite();
@@ -51,7 +78,18 @@ abstract class AbstractController implements Config {
 	/**
 	 * Methodo para que los Sitios Implementes sus logicas al inicio de la carga del controlador
 	 */
-	protected abstract function initSite();
+	protected  function initSite() {
+	}
+
+	/**
+	 * Para mostar Log de Sitio
+	 * @param unknown $msg
+	 */
+	private function logDebug($msg) {
+		if (self::develop) {
+			echo $msg .'<br>';
+		}
+	}
 
 	/**
 	 * Methodo publico para la ejecucion de los controladores
@@ -59,67 +97,89 @@ abstract class AbstractController implements Config {
 	 * @param unknown_type $controllerName
 	 * @throws Exception
 	 */
-	public function index($controllerName) {
+	public final function index($controllerName) {
+		$this->logDebug('Iniciamos Index');
 		$controller = false;
 		try {
 			// Seteamos Todas las COnfiguraciones Iniciales
+			$this->logDebug('Seteamos Todas las Configuraciones Iniciales');
 			$this->init();
-				
+
 			// Entregamos Session al Sitio
+			$this->logDebug('Entregamos Session al Sitio');
 			$this->registry->template->sessionSite = $this->getSessionSite();
-				
+
 			$error = false;
+			$this->logDebug('Verificamos si necesita Acceso');
 			if ($this->accessControl()) {
+				$this->logDebug('Verificamos si esta Logeado');
 				if ($this->isLogin()) {
+					$this->logDebug('Verificamos si es Dueños y Administrador');
 					if ($this->isOwn() && !$this->isAdmin()) {
 						// Guardamos Data para validar si es dueño
+						$this->logDebug('Guardamos Data para validar si es dueño');
 						$this->setOwnData();
 						// Validamos si el Dueño
+						$this->logDebug('Validamos si el Dueño');
 						$own = $this->getOwn();
 							
 						if (!$own) {
+							$this->logDebug('No posee permiso para esta opcion');
 							throw new Exception("No posee permiso para esta opcion.");
 						}
 							
 					} else if ($this->onlyAdmin()) {
+						$this->logDebug('Verificamos si es un Administrador');
 						// Verificamos si es un Administrador
 						if (!$this->isAdmin()) {
-							throw new Exception("Acceso No Autorizado.");
+							throw new Exception("Acceso No Autorizado.[A]");
 						}
 					} else if ($this->isClient()) {
+						$this->logDebug('Verificamos si es Cliente');
 						if (!$this->accessClient()) {
-							throw new Exception("Acceso No Autorizado.");
+							throw new Exception("Acceso No Autorizado.[C]");
 						}
 					}
 				} else {
+					$this->logDebug('Debe Ingresar al Sitio');
 					throw new Exception("Debe Ingresar al Sitio.");
 				}
 			}
-
+			$this->logDebug('Cargamos Action de Controller');
 			// Cargamos Pagina
 			$action = $this->action();
-
+			
+			$this->logDebug('Cargamos logica de sitios de inicio');
 			// Cargamos logica de sitios
 			$this->indexSite();
 
 		} catch (Exception $e) {
+			$this->logDebug("Ocurrio un error en la Aplicacion no detectado : " + $e->getMessage());
 			error_log("Ocurrio un error en la Aplicacion no detectado : " + $e->getMessage(), 0);
 			$this->registry->template->msg = $e->getMessage();
 			$controllerName = ".";
 			$action = "error";
 		}
-
+		
+		$this->logDebug('Verificamos si es Global');
 		if ($this->isGloba()) {
+			$this->logDebug('es Global');
 			$controllerName = ".";
 		}
-
+		
+		$this->logDebug('Verificamos si es una respuesta de controlador');
 		// Verificamos si es una respuesta de controlador
 		if (strstr($action, '->') != '') {
+			$this->logDebug('es Controlador');
 			$controller = true;
 			$action =  substr(strstr($action, '->'),2);
 		}
+		
+		$this->logDebug('Verificamos si se debe exportar');
 		// Verificamos si se debe exportar
 		if ($this->export()) {
+			$this->logDebug('Si se debe exportar');
+			
 			header("Content-type: application/vnd.ms-excel; name='excel'");
 			header("Content-Disposition: filename=".$controllerName.".xls");
 			header("Pragma: no-cache");
@@ -127,8 +187,10 @@ abstract class AbstractController implements Config {
 		}
 
 		if (!$controller) {
+			$this->logDebug('Cargamos la Pagina');
 			$this->registry->template->show($controllerName, $action, $this->isModal());
 		} else {
+			$this->logDebug('Ejecutamos el controller (controller->[name])');
 			// Ejecutamos el controller (controller->[name])
 			$host  = $_SERVER['HTTP_HOST'];
 			$uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
@@ -136,18 +198,20 @@ abstract class AbstractController implements Config {
 		}
 
 	}
-	
+
 	/**
-	* 
-	* Methodo para guardar data para avlidar si es dueño
-	*
-	*/
-	protected abstract function setOwnData();
+	 *
+	 * Methodo para guardar data para avlidar si es dueño
+	 *
+	 */
+	protected  function setOwnData() {
+	}
 
 	/**
 	 * Methodo para implementar en sitios Logicas especificas al cargar controlador
 	 */
-	protected abstract function indexSite();
+	protected  function indexSite() {
+	}
 
 	/**
 	 * Methodo para exportar el contenido
@@ -187,15 +251,12 @@ abstract class AbstractController implements Config {
 
 		if(isset($_GET['lang'])) {
 			$lang_site = $_GET['lang'];
-		} else if(isSet($this->getSessionSite()->lang)) {
-			$lang_site = $this->getSessionSite()->lang;
 		} else if(isSet($_COOKIE['lang'])) {
 			$lang_site = $_COOKIE['lang'];
 		} else {
 			$lang_site = 'es';
 		}
-		if (!isSet($_SESSION['lang'])) {
-			$this->getSessionSite()->lang = $lang_site;
+		if (!isSet($_COOKIE['lang'])) {
 			setcookie('lang', $lang_site, time() + (3600 * 24 * 30));
 		}
 		// Setetamos el Lang
@@ -226,9 +287,9 @@ abstract class AbstractController implements Config {
 
 		// setamos el Lang en la Pagina
 		//$this->lang = $lang;
-		$this->registry->template->lang = $lang;
+		$this->setAttribute('lang', $lang);
 
-		$this->registry->template->lang_site = $lang_site;
+		$this->setAttribute('lang_site',$lang_site);
 	}
 
 	/**
@@ -239,7 +300,7 @@ abstract class AbstractController implements Config {
 	/**
 	 *	Methodo para validar el acceso al Sitio
 	 *
-	 */
+	*/
 	protected function accessControl() {
 		return true;
 	}
@@ -338,13 +399,17 @@ abstract class AbstractController implements Config {
 	 * @return boolean
 	 */
 	final protected function isAdmin() {
-		return $this->validAdminProfile();
+		$user = $this->getUserSession();
+		if ($user != null) {
+			$profile = self::profileType;
+			if (isset($user->$profile)) {
+				if ($user->$profile == 1) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
-
-	/**
-	 * Methodo para implementar la validacion para saber si el usuario conectado es un administrador
-	 */
-	protected abstract function validAdminProfile();
 
 	/**
 	 * Methodo que valida si es Cliente
@@ -352,8 +417,9 @@ abstract class AbstractController implements Config {
 	final protected function isClient() {
 		$user = $this->getUserSession();
 		if ($user != null) {
-			if (isset($user->profile)) {
-				if ($user->profile == 3) {
+			$profile = self::profileType;
+			if (isset($user->$profile)) {
+				if ($user->$profile == 3) {
 					return true;
 				}
 			}
