@@ -8,7 +8,12 @@ Ejemplos se uso de esta libreria :
                 <h1>Implementacion de una Controlador que retorna una pagina</h1>
             </header>
             <section id="description"></section>
-            <section id="code">aaa</section>
+            <section id="code">
+		private function foo(items) {
+		    var x = "All this is syntax highlighted";
+		    return x;
+		}
+	    </section>
             <footer>
                 <a href="<?php echo $site; ?>test/simple">Ver Demo</a>
             </footer>
@@ -21,7 +26,11 @@ Ejemplos se uso de esta libreria :
                 <h1>Implementacion de una Controlador con Acceso Requerido</h1>
             </header>
             <section id="description"></section>
-            <section id="code">aaa</section>
+            <section id="code">
+		function foo(items) {
+		    var x = "All this is syntax highlighted";
+		    return x;
+		}</section>
             <footer>
                 <a href="<?php echo $site; ?>test/access">Ver Demo</a>
             </footer>
@@ -34,7 +43,11 @@ Ejemplos se uso de esta libreria :
                 <h1>Implementacion de una Controlador con Validacion de que la data que vea sea solo de un dusño definido</h1>
             </header>
             <section id="description"></section>
-            <section id="code">aaa</section>
+            <section id="code">
+		function foo(items) {
+		    var x = "All this is syntax highlighted";
+		    return x;
+		}</section>
             <footer>
                 <a href="<?php echo $site; ?>test/own">Ver Demo</a>
             </footer>
@@ -106,3 +119,13 @@ Ejemplos se uso de esta libreria :
         </article>
     </li>
 </ul>
+
+<script src="http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("code");
+    editor.setTheme("ace/theme/eclipse");
+    editor.getSession().setMode("ace/mode/php");
+    editor.setReadOnly(true);
+    editor.setShowPrintMargin(false);
+    editor.setHighlightActiveLine(false);
+</script>

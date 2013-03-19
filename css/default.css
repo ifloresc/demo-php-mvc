@@ -113,3 +113,10 @@ section #code {
     margin-left: 30px;
     margin-bottom: 30px;
 }
+
+#code { 
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
