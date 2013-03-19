@@ -30,23 +30,22 @@
 		<![endif]-->
 	</head>
 	<body>
-	
-	<section id="body">
 
-		<header>			
-			<h2><?php echo $lang['PAGE_NAME']; ?></h2>
-			<div id="homeLogout">
-				<a href="<?php echo $site; ?>indexSite">Inicio</a>
-			</div>
-		</header>
+    <header id="header">
+        <h2><?php echo $lang['PAGE_NAME']; ?></h2>
+        <div id="homeLogout">
+            <a href="<?php echo $site; ?>indexSite">Inicio</a>
+        </div>
+    </header>
+
+	<section id="body">
 
 		<section id="content">
 			<!-- Exito -->
 			<section id="alert">
 				<article id="alert_msg"></article>
 			</section>
-			<br>
-			
+
 			<?php			
 			include($body);
 			?>
