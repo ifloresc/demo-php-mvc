@@ -5,7 +5,7 @@ MVC Php
 
 Se esta trabajando en la estructura para manejar como libreria, para los proyectos php
 
-version 3.1
+version 4.0
 
 # Uso
 
