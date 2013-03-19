@@ -1,10 +1,12 @@
-var site = ""
+var site = "/demo-php-mvc/";
 
 $(document).ready(function(){
 	
 	jQuery("#formID").validationEngine();
 	
 	$( "#alert" ).hide();
+	
+	$( "#tabs" ).tabs();
 	
 	$( "#accordion" ).accordion({ 
 		active: false,
@@ -40,12 +42,14 @@ $(document).ready(function(){
 	 * Botones para paginas sin modales
 	 */
 	$("html").delegate("#pf_btn_accept", "click", function() {
-	//$("#pf_btn_accept").click( function() {
 		if ($('#formID').validationEngine('validate')) {	
-			//submit("formID", "content");
-			$('#formID').submit();
+			submit("formID", "content");
 		}
     });
+	
+	$("body").enterKey(function () {
+		$('input[type="button"]').trigger('click');
+	})
 	
 	/**
 	 * Botones para paginas en modales
@@ -54,21 +58,6 @@ $(document).ready(function(){
 		jQuery("#formIDModal").validationEngine();
 		if ($('#formIDModal').validationEngine('validate')) {	
 			submit("formIDModal", "content");
-		}
-    });
-	
-	$("html").delegate("#pf_md_btn_login", "click", function() {
-		jQuery("#formIDModal").validationEngine();
-		if ($('#formIDModal').validationEngine('validate')) {	
-			var url =  $("#formIDModal").attr('action');
-			var data = $("#formIDModal").serialize();
-			
-			var resp = callAjax(url, data);
-			$("#alert_msg").html(resp);
-			
-			$("#alert").show( 'blind', {}, 500 );
-			
-			location.reload();
 		}
     });
 	
@@ -89,10 +78,11 @@ $(document).ready(function(){
 			location.reload();
     });
 	
-	$("html").delegate("#delete", "click", function() {
+	$("html").delegate("#btn-ajax", "click", function() {
 		var url = $(this).attr("url");
 		
 		var resp = callAjax(url, {});
+		
 		$("#alert_msg").html(resp);
 		
 		$("#alert").show( 'blind', {}, 500 );
@@ -154,14 +144,6 @@ $(document).ready(function(){
 		}
 	});
 	
-//	$( "#btn-login" ).click( function() {
-//		loadModal(site + '/login');
-//	});
-	
-//	$( "#lnk-notice" ).click( function() {
-//		load(site + '/notices/list','', 'content');
-//	});
-	
 	/* Function */
 	function loadModal(url) {
 		$( "#dialog-form" ).dialog( "open" );
@@ -171,8 +153,14 @@ $(document).ready(function(){
 	
 	function load(url, data, div) {
 		var html = callAjax(url, data);
-		
-		$("#" + div).html(html); 
+		// Verificamos si es un error
+		if (html.indexOf("Error") != -1) {
+			$("#alert_msg").html(html);
+			
+			$("#alert").show( 'blind', {}, 500 );
+		} else {
+			$("#" + div).html(html); 
+		}
 	}
 	
 	function callAjax(url, data) {
@@ -214,6 +202,7 @@ $(document).ready(function(){
 		return false;
 	}
 	
+	 
 });
 
 function checkRut(field, rules, i, options) {

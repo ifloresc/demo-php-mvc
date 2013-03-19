@@ -11,10 +11,10 @@ Ejemplos se uso de esta libreria :
 		<a href="<?php echo $site; ?>test/own">Only Own</a>
 	</li>
 	<li>
-		<a href="<?php echo $site; ?>test/error">Error</a>
+		<a url="<?php echo $site; ?>test/error" id="btn-ajax">Error</a>
 	</li>
 	<li>
-		<a href="<?php echo $site; ?>test/succes">Succes</a>
+		<a url="<?php echo $site; ?>test/succes" id="btn-ajax">Succes</a>
 	</li>
 	<li>
 		<a href="<?php echo $site; ?>test/json">JSON</a>

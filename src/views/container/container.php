@@ -21,10 +21,9 @@
 		<script src="<?php echo $site; ?>js/jquery-ui-1.8.20.custom.min.js"  type="text/javascript"></script>
 		<script src="<?php echo $site; ?>js/jquery.validationEngine.js" type="text/javascript"></script>
 		<script src="<?php echo $site; ?>js/languages/jquery.validationEngine-<?php echo $lang_site ?>.js" type="text/javascript"></script>		
-		<script src="<?php echo $site; ?>js/jquery.Rut.js" type="text/javascript"></script>
-		<script src="<?php echo $site; ?>js/jquery.dataTables.js" type="text/javascript"></script>
-		<script src="<?php echo $site; ?>js/default.js" type="text/javascript"></script>
-		<script src="<?php echo $site; ?>js/jquery.MetaData.js" type="text/javascript"></script>
+		<script src="<?php echo $site; ?>js/jquery.dataTables.js" type="text/javascript"></script>		
+		<script src="<?php echo $site; ?>js/jquery.enter.js" type="text/javascript"></script>
+		<script src="<?php echo $site; ?>js/default.js?id=<?php echo rand(); ?>" type="text/javascript"></script>
 
 		<!--[if lt IE 9]>
 		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
