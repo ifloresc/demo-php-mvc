@@ -8,7 +8,7 @@ Ejemplos se uso de esta libreria :
                 <h1>Implementacion de una Controlador que retorna una pagina</h1>
             </header>
             <section id="description"></section>
-            <section id="code">
+            <section id="editor">
 		private function foo(items) {
 		    var x = "All this is syntax highlighted";
 		    return x;
@@ -119,13 +119,14 @@ Ejemplos se uso de esta libreria :
         </article>
     </li>
 </ul>
-
+<!--
 <script src="http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
 <script>
-    var editor = ace.edit("code");
+    var editor = ace.edit("editor");
     editor.setTheme("ace/theme/eclipse");
     editor.getSession().setMode("ace/mode/php");
     editor.setReadOnly(true);
     editor.setShowPrintMargin(false);
     editor.setHighlightActiveLine(false);
 </script>
+-->
