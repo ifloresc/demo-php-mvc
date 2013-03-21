@@ -114,9 +114,9 @@ section #code {
     margin-bottom: 30px;
 }
 
-#code { 
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-    }
+section #description {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 30px;
+}
+
