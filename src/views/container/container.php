@@ -10,15 +10,15 @@
 		<title><?php echo $lang['PAGE_NAME']; ?> - <?php echo $lang['PAGE_TITLE']; ?></title>
 		<!--  CSS -->
 		<link rel="stylesheet" href="<?php echo $site; ?>css/default.css" />
-		<link rel="stylesheet" href="<?php echo $site; ?>css/ui-lightness/jquery-ui-1.8.20.custom.css" />
+		<link rel="stylesheet" href="<?php echo $site; ?>css/smoothness/jquery-ui-1.10.2.custom.css" />
 		<link rel="stylesheet" href="<?php echo $site; ?>css/validationEngine.jquery.css" />
 		<link rel="stylesheet" href="<?php echo $site; ?>css/jquery.dataTables.css" /> 	
 		<link rel="stylesheet" href="<?php echo $site; ?>css/jquery.dataTables_themeroller.css" />  
 		<link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700|Yanone+Kaffeesatz:400,200,300,700' rel='stylesheet' type='text/css'>
 		
 		<!-- JS -->
-		<script src="<?php echo $site; ?>js/jquery-1.7.2.min.js"  type="text/javascript"></script>
-		<script src="<?php echo $site; ?>js/jquery-ui-1.8.20.custom.min.js"  type="text/javascript"></script>
+		<script src="<?php echo $site; ?>js/jquery-1.9.1.js"  type="text/javascript"></script>
+		<script src="<?php echo $site; ?>js/jquery-ui-1.10.2.custom.js"  type="text/javascript"></script>
 		<script src="<?php echo $site; ?>js/jquery.validationEngine.js" type="text/javascript"></script>
 		<script src="<?php echo $site; ?>js/languages/jquery.validationEngine-<?php echo $lang_site ?>.js" type="text/javascript"></script>		
 		<script src="<?php echo $site; ?>js/jquery.dataTables.js" type="text/javascript"></script>		
