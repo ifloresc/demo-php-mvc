@@ -1,19 +1,10 @@
-<div class="ui-widget"  id="alert">
-	<div class="ui-state-highlight ui-corner-all" style="padding: 0 .7em;">
-		<p>
-			<span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span>
-			<strong>Exito:</strong>						
+<div class="alert alert-success">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
 <?php 
-if (isset($msg)) {
-	echo $msg; 
-} else {
-	echo 'Operacion Realizada Exitosamente !';
-}
+	echo $lang[$msg]; 
 ?>
-		</p>
-		<!--input type="button" id="pf_md_btn_refresh" value="Recargar" /-->
-	</div>
 </div>
+
 <script>
 
 $(function () {
@@ -22,13 +13,23 @@ $(function () {
     {
         var alerttimer = window.setTimeout(function () {
             $alert.trigger('click');
-        }, 3000);
+        }, 2000);
         $alert.animate({height: $alert.css('line-height') || '50px'}, 200)
         .click(function () {
             window.clearTimeout(alerttimer);
             $alert.animate({height: '0'}, 200);
             $alert.hide();
+            <?php
+            if (isset($redirect)) {
+            ?>
+            document.location.href = '<?php echo  $redirect; ?>';
+            <?php
+            } else {
+            ?>
             location.reload();
+            <?php
+            }
+            ?>
         });
     }
 });

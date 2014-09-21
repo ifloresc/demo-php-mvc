@@ -11,6 +11,12 @@
                     "alertTextCheckboxe": "* Linnuke on nõutud",
                     "alertTextDateRange": "* Mõlemad kuupäeva valikud on nõutud"
                 },
+                "requiredInFunction": { 
+                    "func": function(field, rules, i, options){
+                        return (field.val() == "test") ? true : false;
+                    },
+                    "alertText": "* Field must equal test"
+                },
                 "dateRange": {
                     "regex": "none",
                     "alertText": "* Vigane ",
@@ -85,7 +91,7 @@
                 },
                 "number": {
                     // Number, including positive, negative, and floating decimal. credit: orefalo
-                    "regex": /^[\-\+]?(([0-9]+)([\.,]([0-9]+))?|([\.,]([0-9]+))?)$/,
+                    "regex": /^[\-\+]?((([0-9]{1,3})([,][0-9]{3})*)|([0-9]+))?([\.]([0-9]+))?$/,
                     "alertText": "* Vigane väärtus"
                 },
                 "date": {

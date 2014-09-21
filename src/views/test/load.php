@@ -1,1 +1,0 @@
-Hola Id <?echo $id; ?>

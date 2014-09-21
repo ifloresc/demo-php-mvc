@@ -10,6 +10,12 @@
                     "alertTextCheckboxMultiple": "* Var god välj ett alternativ",
                     "alertTextCheckboxe": "* Den här kryssrutan måste anges"
                 },
+                "requiredInFunction": { 
+                    "func": function(field, rules, i, options){
+                        return (field.val() == "test") ? true : false;
+                    },
+                    "alertText": "* Field must equal test"
+                },
                 "minSize": {
                     "regex": "none",
                     "alertText": "* Minimum ",
@@ -74,7 +80,7 @@
                 },
                 "number": {
                     // Number, including positive, negative, and floating decimal. credit: orefalo
-                    "regex": /^[\-\+]?(([0-9]+)([\.,]([0-9]+))?|([\.,]([0-9]+))?)$/,
+                    "regex": /^[\-\+]?((([0-9]{1,3})([,][0-9]{3})*)|([0-9]+))?([\.]([0-9]+))?$/,
                     "alertText": "* Inte korrekt decimalvärde"
                 },
                 "date": {

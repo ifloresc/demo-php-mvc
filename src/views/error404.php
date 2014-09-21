@@ -1,9 +1,5 @@
-<div class="ui-widget">
-	<div class="ui-state-error ui-corner-all" style="padding: 0 .7em;">
-		<p>
-			<span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span>
-			<strong>404:</strong>		
-			<?php echo $error; ?>
-		</p>
-	</div>
+<div class="alert alert-warning">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>Atencion : </strong>
+  <p><h1>La pagina que buscas no existe</h1></p>
 </div>

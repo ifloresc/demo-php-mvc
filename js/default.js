@@ -5,38 +5,35 @@ $(document).ready(function(){
 	jQuery("#formID").validationEngine();
 	
 	$( "#alert" ).hide();
-	
-	$( "#tabs" ).tabs();
-	
-	$( "#accordion" ).accordion({ 
-		active: false,
-		collapsible: true
+
+    /* Carga de combo por Ajax */
+    $("#formID").relatedSelects({
+		onChangeLoad: site + '/json/state',
+		defaultOptionText: 'Seleccione',
+		selects: {
+			'type':		{ loadingMessage:'Cargando Tipos' },
+			'state':	{ loadingMessage:'Cargando Estados' }
+		}
 	});
-	
-	$('.table_list').dataTable( {
-	"oLanguage": {
-                "sUrl": site + "/js/datatable.spanish.txt"
-	},
-        "bPaginate": true,
-        "bLengthChange": true,
-        "bFilter": true,
-        "bSort": true,
-        "bInfo": true,
-        "bAutoWidth": false,
-        "sPaginationType": "full_numbers"
-    } );
-	
-	$('.table_list_detail').dataTable( {
-	"oLanguage": {
-                "sUrl": site + "/js/datatable.spanish.txt"
-	},
-        "bPaginate": false,
-        "bLengthChange": true,
-        "bFilter": false,
-        "bSort": true,
-        "bInfo": false,
-        "bAutoWidth": false
-    } );
+
+	$("#formID").relatedSelects({
+		onChangeLoad: site + '/json/commune',
+		defaultOptionText: 'Seleccione',
+		selects: {
+			'country':	{ loadingMessage:'Cargando Paises' },
+			'city':	{ loadingMessage:'Cargando Ciudades' },
+			'commune':	{ loadingMessage:'Cargando Comunas' }
+		}
+	});
+
+	$("#formID").relatedSelects({
+		onChangeLoad: site + '/json/client',
+		defaultOptionText: 'Seleccione',
+		selects: {
+			'supplier':	{ loadingMessage:'Cargando Clientes' },
+			'subclient':	{ loadingMessage:'Cargando Sub-Clientes' }
+		}
+	});
 	
 	/**
 	 * Botones para paginas sin modales
@@ -63,6 +60,8 @@ $(document).ready(function(){
 	
 	$("html").delegate("#pf_md_btn_crud", "click", function() {
 		if ($('#formID').validationEngine('validate')) {
+			$(this).addClass('disabled');
+
 			var url =  $("#formID").attr('action');
 			var data = $("#formID").serialize();
 			
@@ -71,12 +70,38 @@ $(document).ready(function(){
 			
 			$("#alert").show( 'blind', {}, 500 );
 
+			$(this).removeClass('disabled');
+		}
+    });
+
+    $("html").delegate("#pf_md_btn_submit", "click", function() {
+		if ($('#formID').validationEngine('validate')) {
+			$(this).addClass('disabled');
+
+			$("#formID").submit();
 		}
     });
 	
 	$("html").delegate("#pf_md_btn_refresh", "click", function() {
 			location.reload();
     });
+	
+	$("html").delegate("#delete", "click", function() {
+		$(this).addClass('disabled');
+		var url = $(this).attr("url");
+		
+		var resp = callAjax(url, {});
+		$("#alert_msg").html(resp);
+		
+		$("#alert").show( 'blind', {}, 500 );
+
+		$(this).removeClass('disabled');
+	});
+	
+	$("html").delegate("#pf_btn_back", "click", function() {
+	        parent.history.back();
+	        return false;
+	   });
 	
 	$("html").delegate("#btn-ajax", "click", function() {
 		var url = $(this).attr("url");
@@ -87,6 +112,18 @@ $(document).ready(function(){
 		
 		$("#alert").show( 'blind', {}, 500 );
 	});
+	
+	$( "#packet" ).change(function() {
+		var data = $("#formID").serialize();
+		var url =  site + 'profile/option';
+		
+		load(url, data, 'options');
+	});
+
+	$('a').tooltip({
+      selector: "[data-toggle=tooltip]",
+      container: "body"
+    });
 	
 	
 	function submit(form, div) {
@@ -103,45 +140,6 @@ $(document).ready(function(){
 		modal: true,
 		show: "fade",
 		hide: "explode"
-	});
-	
-	$( "#date" ).datepicker({
-		minDate: "-100y" ,
-		maxDate: "+1d",
-		showOn: "button",
-		buttonImage: site + "/images/calendar.gif",
-		buttonImageOnly: true,
-		dateFormat: "dd/mm/yy",
-		changeMonth: true,
-		changeYear: true,
-		showOtherMonths: true,
-		selectOtherMonths: true,
-		monthNamesShort: [ "Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic" ]
-	});
-	
-	// Calendarios
-	var dates = $( "#initDate, #endDate" ).datepicker({
-		minDate: "-100y" ,
-		maxDate: "+1m +1w",
-		showOn: "button",
-		buttonImage: site + "/images/calendar.gif",
-		buttonImageOnly: true,
-		dateFormat: "dd/mm/yy",
-		changeMonth: true,
-		changeYear: true,
-		showOtherMonths: true,
-		selectOtherMonths: true,
-		monthNamesShort: [ "Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic" ],
-		//showButtonPanel: true,
-		onSelect: function( selectedDate ) {
-			var option = this.id == initDateName ? "minDate" : "maxDate",
-				instance = $( this ).data( "datepicker" ),
-				date = $.datepicker.parseDate(
-					instance.settings.dateFormat ||
-					$.datepicker._defaults.dateFormat,
-					selectedDate, instance.settings );
-			dates.not( this ).datepicker( "option", option, date );
-		}
 	});
 	
 	/* Function */
