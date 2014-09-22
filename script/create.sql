@@ -7,7 +7,7 @@ source drop.sql;
 source db.sql;
 
 -- COnectamos
-use sisnetcl_market;
+use sisnetcl_demo;
 
 -- Creamos Tablas
 source table.sql;

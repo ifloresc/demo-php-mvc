@@ -54,7 +54,13 @@ insert into Options (name, description, code, url, module_id, father_option, ena
 	,('Detalle', 'Detalle Paquete', 'packet.detail', '#',(select id from Module where code = 'PAC'),34, true)
 	,('Elimiar', 'Eliminar Paquete', 'packet.del', '#',(select id from Module where code = 'PAC'),34, true)
 	,('Activar', 'Activar Paquete', 'packet.enabled', '#',(select id from Module where code = 'PAC'),34, true)
-	,('Crear', 'Crear Paquete', 'packet.add', 'packet/put',(select id from Module where code = 'PAC'),null, true);
+	,('Crear', 'Crear Paquete', 'packet.add', 'packet/put',(select id from Module where code = 'PAC'),null, true)
+    -- TIPO USUARIO	
+	,('Listar', 'Listar Tipo Usuarios', 'userType.list', 'userType/list',(select id from Module where code = 'TUSR'),null, true)
+	,('Modificar', 'Modificar Tipo Usuario', 'userType.mod', '#',(select id from Module where code = 'TUSR'),74, true)
+	,('Detalle', 'Detalle Tipo Usuario', 'userType.detail', '#',(select id from Module where code = 'TUSR'),74, true)
+	,('Elimiar', 'Eliminar Tipo Usuario', 'userType.del', '#',(select id from Module where code = 'TUSR'),74, true)
+	,('Crear', 'Crear Tipo Usuario', 'userType.add', 'userType/put',(select id from Module where code = 'TUSR'),null, true);
 
 -- Application
 insert into Application (name, code, description, enabled) values

@@ -6,6 +6,7 @@ include_once (__SITE_PATH  .'/dao/moduleDAO.php');
 include_once (__SITE_PATH  .'/dao/optionDAO.php');
 include_once (__SITE_PATH  .'/dao/profileDAO.php');
 include_once (__SITE_PATH  .'/dao/packetDAO.php');
+include_once (__SITE_PATH  .'/dao/userTypeDAO.php');
 
 // SERVICE
 include_once (__SITE_PATH  .'/service/userService.php');
@@ -14,6 +15,7 @@ include_once (__SITE_PATH  .'/service/moduleService.php');
 include_once (__SITE_PATH  .'/service/optionService.php');
 include_once (__SITE_PATH  .'/service/profileService.php');
 include_once (__SITE_PATH  .'/service/packetService.php');
+include_once (__SITE_PATH  .'/service/userTypeService.php');
 
 // Model
 include_once (__SITE_PATH  .'/model/User.php');
